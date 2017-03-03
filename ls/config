@@ -1,0 +1,18 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[credential]
+	UseHttpPath = true
+	helper = !aws codecommit credential-helper $@
+[remote "codecommit-origin"]
+	url = https://git-codecommit.us-west-2.amazonaws.com/v1/repos/PersonalSite
+	fetch = +refs/heads/*:refs/remotes/codecommit-origin/*
+	pushurl = https://git-codecommit.us-west-2.amazonaws.com/v1/repos/PersonalSite
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[remote "origin"]
+	url = https://github.com/garybains/PersonalSite.git
+	fetch = +refs/heads/*:refs/remotes/origin/*

@@ -1,0 +1,175 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app');
+var debug = require('debug')('personalsite:server');
+var http = require('http');
+
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || '3001');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+
+// Socket for realtime apps
+var io = require('socket.io')(server);
+
+/**
+ * Tic Tak Toe Game
+ */
+//Whenever someone connects this gets executed
+
+let Games = {}
+
+io.on('connection', function(socket){
+
+  console.log('A user connected');
+  io.emit('server:allGames', {allGames: Object.keys(Games)});
+
+  socket.on('client:newGame', function(data) {
+    Games[data.gameName] = {
+      squares: Array(9).fill(null),
+      playerX: data.playerX,
+      playerO: null,
+      xIsNext: true,
+      lastUpdate: new Date()
+    }
+    io.emit('server:allGames', {allGames: Object.keys(Games)});
+    console.log(Games);
+  });
+
+  socket.on('client:playerO', function(data) {
+    Games[data.gameName].playerO = data.playerO;
+    console.log(Games);
+    io.emit('server:startGame', {
+      gameName: data.gameName,
+      playerO: Games[data.gameName].playerO,
+      playerX: Games[data.gameName].playerX
+    });
+  });
+
+  socket.on('client:update', function(data) {
+    Games[G].lastUpdate = new Date();
+    console.log(Games);
+    console.log("Data client:update");
+    console.log(data);
+    const G = data.gameName;
+    Games[G].squares = data.squares;
+    Games[G].xIsNext = data.xIsNext;
+    io.emit('server:update', {
+      gameName: G,
+      game: Games[G]
+    });
+    console.log(Games)
+  });
+
+  //Whenever someone disconnects this piece of code executed
+  socket.on('disconnect', function (data) {
+    console.log('A user disconnected');
+    console.log(data);
+  });
+
+});
+
+// To periodically remove games which aren't being played. 
+const MINUTE = 60 * 1000; // 1000 milisec = 1 sec and 60 sec = 1 min
+
+const THREE_MINUTES = 3 * MINUTE;
+
+setInterval(() => {
+  let anyGameRemoved = false;
+  keys = Object.keys(Games);
+
+  for (let i=0; i < keys.length; i++) {
+
+    const timeDiff = new Date() - Games[keys[i]].lastUpdate;
+    if (timeDiff > THREE_MINUTES) {
+      delete Games[keys[i]];
+      anyGameRemoved = true;
+    }
+  }
+  if (anyGameRemoved) {
+    io.emit('server:allGames', {allGames: Object.keys(Games)});
+  }
+}, MINUTE);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}

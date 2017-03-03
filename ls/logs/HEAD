@@ -1,0 +1,14 @@
+0000000000000000000000000000000000000000 fd361c3f7d5823117546649a234f8088957cfe1c Gurpreet Singh <gsb.gurpreet@gmail.com> 1487557771 -0500	commit (initial): EB CLI initial commit
+fd361c3f7d5823117546649a234f8088957cfe1c fd361c3f7d5823117546649a234f8088957cfe1c Gurpreet Singh <gsb.gurpreet@gmail.com> 1487557772 -0500	checkout: moving from master to master
+fd361c3f7d5823117546649a234f8088957cfe1c 0b18fe00cafde76ec0ec4fec2438086330c7aecf Gurpreet Singh <gsb.gurpreet@gmail.com> 1487557864 -0500	commit: first commit
+0b18fe00cafde76ec0ec4fec2438086330c7aecf 23cdd34806c079015ddb7ca206f3939094a682e8 Gurpreet Singh <gsb.gurpreet@gmail.com> 1487558190 -0500	commit: my First app
+23cdd34806c079015ddb7ca206f3939094a682e8 8773f1c5b0dc6f8ee57dcc2ce4a29ebab97d186a Gurpreet Singh <gsb.gurpreet@gmail.com> 1487609555 -0500	commit: Add React to Express App
+8773f1c5b0dc6f8ee57dcc2ce4a29ebab97d186a 4b264296f34460e0f9a8a29c1d5cf7d8cd91244c Gurpreet Singh <gsb.gurpreet@gmail.com> 1487743843 -0500	commit: Minimum Viable Product
+4b264296f34460e0f9a8a29c1d5cf7d8cd91244c 6d9acc257ba61651467f9028baccbaa0b8b6494b Gurpreet Singh <gsb.gurpreet@gmail.com> 1487744127 -0500	commit: MVP static resources update
+6d9acc257ba61651467f9028baccbaa0b8b6494b 1c8a054919d1bd5ea8c05797383697690a4389b7 Gurpreet Singh <gsb.gurpreet@gmail.com> 1487745025 -0500	commit: MVP static resources update with react build.
+1c8a054919d1bd5ea8c05797383697690a4389b7 395b3c2acdf800d5971803ca4761e9d02710d983 Gurpreet Singh <gsb.gurpreet@gmail.com> 1487749712 -0500	commit: Add socket.io into client side of depedencies package.json and npm install
+395b3c2acdf800d5971803ca4761e9d02710d983 d95e3721918cc0239f8f6b751b297b9ef1d6ce79 Gurpreet Singh <gsb.gurpreet@gmail.com> 1487750575 -0500	commit: Looked at the logs it was ... server side issue the socket.io was listed under devDependicies
+d95e3721918cc0239f8f6b751b297b9ef1d6ce79 a26d722239424c34c2b88ba848fa10b45e9e5e2a Gurpreet Singh <gsb.gurpreet@gmail.com> 1488256227 -0500	commit: Add client/src and client/public directory for tracking change to source of application. As the repository is going public on github and no longer just for deployment
+a26d722239424c34c2b88ba848fa10b45e9e5e2a 9e9d725f980ea3268084c4fabe12ef0f9e8d1b9d Gurpreet Singh <gsb.gurpreet@gmail.com> 1488257616 -0500	commit: Add more personal display of text one e.g instead of winner: X You won git add . OR Lost it, better luck next time
+9e9d725f980ea3268084c4fabe12ef0f9e8d1b9d d45f342fde3f61849e6ca01c0e7573e958084485 Gurpreet Singh <gsb.gurpreet@gmail.com> 1488260259 -0500	commit: Make seprate file for each Component in Game component in src/Components/Game/
+d45f342fde3f61849e6ca01c0e7573e958084485 95c2a35b16612f913bfd1a26bc0c7a0607de89de Gurpreet Singh <gsb.gurpreet@gmail.com> 1488261164 -0500	commit: Production build

@@ -60,11 +60,11 @@ io.on('connection', function(socket){
   });
 
   socket.on('client:update', function(data) {
+    const G = data.gameName;
     Games[G].lastUpdate = new Date();
     console.log(Games);
     console.log("Data client:update");
     console.log(data);
-    const G = data.gameName;
     Games[G].squares = data.squares;
     Games[G].xIsNext = data.xIsNext;
     io.emit('server:update', {

@@ -106,11 +106,13 @@ class Game extends Component {
       [0, 3, 6], [1, 4, 7], [2, 5, 8], // vertical
       [0, 4, 8], [6, 4, 2] // crossed
     ];
+          
+    // If first second and third winning position are all the same and
+    // not null return that position else null
     for (let i=0; i < winningCases.length; i += 1) {
       let firstPos = winningCases[i][0];
       let secondPos = winningCases[i][1];
       let thirdPos = winningCases[i][2];
-      
       if ((squares[firstPos] === squares[secondPos] &&
           squares[secondPos] === squares[thirdPos]) &&
           squares[firstPos] !== null){
@@ -187,7 +189,13 @@ class Game extends Component {
             } else {
                 return (
                   <div>
-                    {"Wait for other player to join Game : " + this.state.gameName}
+                    <br />
+                    <br />
+                    <br />
+                    <h3>{"Ask for other player to join the Game : " + this.state.gameName}</h3>
+                    <br />
+                    <br />
+                    <br />
                   </div>
                 );
             }
@@ -196,6 +204,7 @@ class Game extends Component {
                 return (
                   <div>
                     <NameInput title="Your Name" onClick={this._setPlayerO} />
+                    <br />
                   </div>
                 );
             } else {

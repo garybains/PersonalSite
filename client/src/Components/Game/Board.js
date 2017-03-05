@@ -7,11 +7,10 @@ class Board extends Component {
   render() {
     return (
       <div>
-        playerX : {this.props.playerX}
-        <br />
-        playerO : {this.props.playerO}
+        <h3>{this.props.playerX + " Vs " + this.props.playerO}</h3>
         <br />
         {'You are : ' + this.props.playerIs}
+        <br />
         <br />
         <Square value={this.props.squares[0]} onClick={() => this.props.squareClicked(0)} />
         <Square value={this.props.squares[1]} onClick={() => this.props.squareClicked(1)} />
@@ -26,6 +25,8 @@ class Board extends Component {
         <Square value={this.props.squares[8]} onClick={() => this.props.squareClicked(8)} />
         <br />
         <p>{this.props.status}</p>
+        <br />
+        <br />
       </div>
     )
   }

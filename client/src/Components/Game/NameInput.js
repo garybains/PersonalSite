@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-//import RaisedButton from 'material-ui/RaisedButton';
-
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+injectTapEventPlugin();
 
 class NameInput extends Component {
 
@@ -21,12 +25,16 @@ class NameInput extends Component {
   render() {
     return(
       <div>
-        <label>
-          {this.props.title} : 
-          <input type="text" value={this.state.value} onChange={this.handleChange}
-              placeholder={"Enter a name for " + this.props.title } />
-        </label>
-        <button onClick={this.handleClick}>Set</button>
+        <TextField
+          hintText={"Please type in " + this.props.title}
+          floatingLabelText={this.props.title}
+          value={this.state.value}
+          onChange={this.handleChange}
+        />
+        <br />
+        <RaisedButton onClick={this.handleClick}>O.K</RaisedButton>
+        <br />
+        <br />
       </div>
     )
   }
